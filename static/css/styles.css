@@ -242,7 +242,8 @@ textarea, input[type="text"] {
     padding: 8px;
     border: 1px solid #dddddd;
     border-radius: 5px;
-    resize: none;
+    resize: vertical;
+    max-height: 200px;
     outline: none;
 }
 

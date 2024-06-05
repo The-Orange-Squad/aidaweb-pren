@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         promptsContainer.insertAdjacentHTML('beforeend', `
                             <section class="prompt-item">
                                 <h2><a href="/prompt/${prompt[0]}">${prompt[2]}</a></h2>
-                                <textarea readonly>${prompt[3]}</textarea>
+                                <textarea readonly class="previewprompt">${prompt[3]}</textarea>
                                 <div class="prompt-footers">
                                     <span>👍 ${prompt[4] - prompt[5]}</span>
                                     <span>👁️ ${prompt[6]}</span>
