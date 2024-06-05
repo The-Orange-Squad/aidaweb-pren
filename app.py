@@ -280,6 +280,29 @@ def delete_comment(comment_id):
 def join():
     return render_template('jointos.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/profile')
+@login_required
+def profile():
+    # Get user_id from URL
+    user_id = request.args.get('user_id')
+
+    # If user_id is not provided, show current user's profile
+    if not user_id:
+        user_id = current_user.id
+    
+    # Get user data
+    user_data = query_database('SELECT * FROM users WHERE id = ?', (user_id,), one=True)
+
+    # Get user's prompts
+    prompts = query_database('SELECT * FROM prompts WHERE user_id = ?', (user_id,))
+
+    # Display user profile
+    return render_template('profile.html', user=user_data, prompts=prompts)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
