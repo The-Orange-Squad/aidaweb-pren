@@ -379,3 +379,134 @@ select {
     margin-top: 20px;
     flex-direction: column;
 }
+
+/*
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <h1>Welcome to AIDA Web Prompt Engineering</h1>
+        <p class="description">A platform for creating, managing, and exploring creative prompts.</p>
+        <p class="additional-info">
+            This platform is designed for AIDA Web users and members of The Orange Squad who are looking to find or share prompts for the AIDA chatbot. These prompts can be used in the chat or run as custom instructions. Whether you're looking to enhance your interactions with AIDA or contribute your own unique prompts, you've come to the right place.
+        </p>
+        <div class="icon-links">
+            <a href="/explore" class="icon-link">
+                <i class="fas fa-lightbulb"></i> Discover Ideas
+            </a>
+            <a href="/dashboard" class="icon-link">
+                <i class="fas fa-share-alt"></i> Share Your Prompts
+            </a>
+            <a href="/join" class="icon-link">
+                <i class="fas fa-users"></i> Join the Community
+            </a>
+            <a href="/about" class="icon-link">
+                <i class="fas fa-book"></i> Learn More
+            </a>
+        </div>
+        <div class="more-info">
+            <h2>Why Use AIDA Web Prompt Engineering?</h2>
+            <p>Our platform offers a variety of features to help you get the most out of your AIDA chatbot experience:</p>
+            <ul>
+                <li><i class="fas fa-cogs"></i> Easy prompt creation and management.</li>
+                <li><i class="fas fa-search"></i> Explore a wide range of prompts created by other users.</li>
+                <li><i class="fas fa-comments"></i> Engage with the community and get feedback.</li>
+                <li><i class="fas fa-star"></i> Rate and review prompts to help others find the best ones.</li>
+                <li><i class="fas fa-tools"></i> Customize prompts to fit your specific needs.</li>
+            </ul>
+            <p>Get started today and take your AIDA chatbot interactions to the next level!</p>
+        </div>
+        <div class="additional-section">
+            <h2>Meet The Team Behind AIDA Web</h2>
+            <p>Our dedicated team is committed to providing you with the best tools and resources for prompt engineering:</p>
+            <ul>
+                <li><i class="fas fa-user"></i> <strong>Alex Johnson</strong> - Lead Developer</li>
+                <li><i class="fas fa-user"></i> <strong>Maria Rodriguez</strong> - Community Manager</li>
+                <li><i class="fas fa-user"></i> <strong>James Lee</strong> - UX/UI Designer</li>
+                <li><i class="fas fa-user"></i> <strong>Sophia Brown</strong> - Content Specialist</li>
+            </ul>
+            <p>Together, we strive to create a platform that is both innovative and user-friendly.</p>
+        </div>
+        <div class="testimonials">
+            <h2>What Our Users Say</h2>
+            <p>Here's what some of our users have to say about their experience with AIDA Web Prompt Engineering:</p>
+            <blockquote>
+                <p><i class="fas fa-quote-left"></i> AIDA Web has completely transformed how I interact with chatbots. The prompts are creative and easy to use! <i class="fas fa-quote-right"></i></p>
+                <footer>- Emily Carter</footer>
+            </blockquote>
+            <blockquote>
+                <p><i class="fas fa-quote-left"></i> I love sharing my own prompts and seeing how others use them. The community is fantastic! <i class="fas fa-quote-right"></i></p>
+                <footer>- Michael Nguyen</footer>
+            </blockquote>
+        </div>
+        <div class="call-to-action">
+            <h2>Ready to Get Started?</h2>
+            <p>Join our community today and start exploring, sharing, and creating amazing prompts. Whether you're a seasoned pro or just getting started, AIDA Web Prompt Engineering has something for everyone.</p>
+            <a href="/register" class="cta-button">Sign Up Now</a>
+        </div>
+    </div>
+{% endblock %}
+*/
+
+/* additional styles */
+
+.additional-section {
+    margin-top: 100px;
+}
+
+.additional-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.additional-section ul li {
+    margin: 10px 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.additional-section ul li i {
+    margin-right: 10px;
+    color: #4b0082;
+}
+
+.testimonials {
+    margin-top: 100px;
+}
+
+.testimonials blockquote {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border-left: 8px solid #4b0082;
+    border-radius: 8px;
+}
+
+.testimonials blockquote p {
+    font-size: 16px;
+}
+
+.testimonials blockquote footer {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.call-to-action {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #4b0082;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.cta-button:hover {
+    background: #3a0069;
+}
