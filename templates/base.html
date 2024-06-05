@@ -18,8 +18,7 @@
                 <li>
                     <div class="user-info">
                         <!-- To profile with the current user ID -->
-                        <span><a href="{{ url_for('profile', user_id=current_user.id) }}">{{ current_user.username }}</a></span>
-                        <img src="{{ current_user.avatar_url }}" alt="User Avatar">
+                        <span><a href="{{ url_for('profile', user_id=current_user.id) }}">{{ current_user.username }}<img src="{{ current_user.avatar_url }}" alt="User Avatar"></a></span>
                         <a href="{{ url_for('logout') }}">Logout</a>
                     </div>
                 </li>
