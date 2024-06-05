@@ -297,6 +297,8 @@ def profile():
     # Get user data
     user_data = query_database('SELECT * FROM users WHERE id = ?', (user_id,), one=True)
 
+    print(user_data)
+
     # Get user's prompts
     prompts = query_database('SELECT * FROM prompts WHERE user_id = ?', (user_id,))
 
@@ -316,6 +318,7 @@ def edit_profile():
 @app.route('/settings')
 @login_required
 def settings():
+    print(current_user.__dict__)
     return render_template('settings.html', user=current_user)
 
 

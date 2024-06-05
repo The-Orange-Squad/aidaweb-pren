@@ -9,12 +9,12 @@
     <div class="settings-form">
         <form action="{{ url_for('edit_profile') }}" method="POST" enctype="multipart/form-data">
             <div>
-                <label for="bio">Bio:</label>
+                <p>Your Bio:</p>
                 <textarea name="bio" maxlength="500">{{ user[4] }}</textarea>
             </div>
             <div>
-                <label for="profile_picture">Profile Picture:</label>
-                <input type="file" name="profile_picture" accept="image/*" />
+                <p>Avatar URL</p>
+                <input type="text" name="avatar_url" value="{{ user.avatar_url }}" />
             </div>
             <button type="submit">Save</button>
         </form>
