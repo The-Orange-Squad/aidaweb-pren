@@ -12,12 +12,66 @@ h1, h2, h3 {
 .container {
     text-align: center;
     margin-top: 50px;
+    padding: 20px;
 }
 
 .description {
     font-size: 18px;
     color: #666666;
     margin: 20px;
+}
+
+.additional-info {
+    font-size: 16px;
+    color: #555;
+    margin: 20px;
+}
+
+.icon-links {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.icon-link {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #4b0082;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.icon-link i {
+    margin-right: 8px;
+}
+
+.icon-link:hover {
+    color: #3a0069;
+}
+
+.more-info {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.more-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.more-info ul li {
+    margin: 10px 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.more-info ul li i {
+    margin-right: 10px;
+    color: #4b0082;
 }
 
 .auth-form {
