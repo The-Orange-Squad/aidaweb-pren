@@ -2,6 +2,11 @@ from flask import Flask, render_template, redirect, url_for, request, flash, ses
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
+from prodpublish import publish
+import threading
+from models import create_database
+
+create_database()
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
@@ -357,4 +362,5 @@ def settings():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    threading.Thread(target=publish).start()
+    app.run(debug=True, host='0.0.0.0', port=8080)
