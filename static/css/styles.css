@@ -139,6 +139,14 @@ h1, h2, h3 {
     font-weight: 600;
 }
 
+.navbar img {
+    width: 20px;
+    height: 20px;
+    border-radius: 12px;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
 .nav-links {
     list-style: none;
     display: flex;

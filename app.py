@@ -13,7 +13,7 @@ login_manager.login_view = 'login'
 
 
 class User(UserMixin):
-    def __init__(self, id, username, discord_username, password, bio, avatar_url):
+    def __init__(self, id, username, discord_username, password, bio = '', avatar_url = 'https://innostudio.de/fileuploader/images/default-avatar.png'):
         self.id = id
         self.username = username
         self.discord_username = discord_username

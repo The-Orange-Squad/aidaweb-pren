@@ -18,7 +18,7 @@
                 <li>
                     <div class="user-info">
                         <span>{{ current_user.username }}</span>
-                        <img src="{{ url_for('static', filename='logo.png') }}" alt="Profile Logo" class="profile-img">
+                        <img src="{{ current_user.avatar_url }}" alt="User Avatar">
                         <a href="{{ url_for('logout') }}">Logout</a>
                     </div>
                 </li>
