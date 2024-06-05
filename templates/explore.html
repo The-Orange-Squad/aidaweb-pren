@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="explore-container">
+    <div class="explore-header">
+        <h1>Explore Prompts</h1>
+        <select id="sortOption">
+            <option value="latest" {% if sort_by == "latest" %}selected{% endif %}>Latest</option>
+            <option value="most_liked" {% if sort_by == "most_liked" %}selected{% endif %}>Most Liked</option>
+            <option value="most_viewed" {% if sort_by == "most_viewed" %}selected{% endif %}>Most Viewed</option>
+        </select>
+        <button id="updateSorting">Sort</button>
+    </div>
+    <div class="prompts-list" id="promptsContainer">
+        {% for prompt in prompts %}
+            <section class="prompt-item">
+                <h2><a href="{{ url_for('prompt_page', prompt_id=prompt[0]) }}">{{ prompt[2] }}</a></h2>
+                <textarea readonly>{{ prompt[3] }}</textarea>
+                <div class="prompt-footers">
+                    <span>👍 {{ prompt[4] - prompt[5] }}</span>
+                    <span>👁️ {{ prompt[6] }}</span>
+                </div>
+            </section>
+        {% endfor %}
+    </div>
+    <button id="loadMorePrompts">Load More</button>
+</div>
+{% endblock %}

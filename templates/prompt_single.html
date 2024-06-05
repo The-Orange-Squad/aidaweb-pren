@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="prompt-container">
+    <div class="prompt-header">
+        <h1>{{ prompt[2] }}</h1>
+        <p>{{ prompt[3] }}</p>
+    </div>
+    <div class="prompt-votes">
+        <button class="vote-btn upvote" data-prompt-id="{{ prompt[0] }}" data-vote-type="1">👍 Upvote</button>
+        <button class="vote-btn downvote" data-prompt-id="{{ prompt[0] }}" data-vote-type="-1">👎 Downvote</button>
+        <span id="voteRatio">Upvotes: {{ prompt[4] }} | Downvotes: {{ prompt[5] }}</span>
+    </div>
+    <div class="prompt-comments">
+        <h3>Comments</h3>
+        <button data-toggle="modal" data-target="#addCommentModal">Add Comment</button>
+        {% for comment in comments %}
+            <div class="comment">
+                <span style="color: purple;">{{ comment_usernames[comment[2]] }}{% if comment[2] == creator[0] %} <span class="creator-badge">Creator</span>{% endif %}</span>
+                <p>{{ comment[3] }}</p>
+                {% if comment[2] == current_user.id %}
+                    <button data-toggle="modal" data-target="#editCommentModal{{ comment[0] }}">Edit</button>
+                    <button data-toggle="modal" data-target="#deleteCommentModal{{ comment[0] }}">Delete</button>
+                {% endif %}
+            </div>
+            {% include 'comment_edit_delete_modal.html' %}
+        {% endfor %}
+    </div>
+
+    <!-- Add Comment Modal -->
+    <div class="modal" id="addCommentModal">
+        <div class="modal-content">
+            <span class="close" data-dismiss="modal">&times;</span>
+            <form action="{{ url_for('add_comment') }}" method="POST">
+                <h2>Add Comment</h2>
+                <input type="hidden" name="prompt_id" value="{{ prompt[0] }}" />
+                <div>
+                    <label>Message:</label>
+                    <textarea name="message" maxlength="500" required></textarea>
+                </div>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

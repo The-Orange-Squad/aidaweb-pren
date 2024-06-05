@@ -1,0 +1,284 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+h1, h2, h3 {
+    color: #4b0082;
+}
+
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.description {
+    font-size: 18px;
+    color: #666666;
+    margin: 20px;
+}
+
+.auth-form {
+    width: 300px;
+    margin: 100px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.auth-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form form input {
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+
+.auth-form form label {
+    font-size: 12px;
+    margin: 8px 0 4px 0;
+}
+
+.auth-form form button {
+    padding: 10px;
+    background: #4b0082;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.auth-form form button:hover {
+    background: #3a0069;
+}
+
+.auth-form form a {
+    color: #4b0082;
+    text-decoration: none;
+}
+
+.auth-form form a:hover {
+    text-decoration: underline;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #4b0082;
+    color: white;
+    padding: 10px;
+}
+
+.navbar a.logo {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #ccc;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info span {
+    margin-right: 10px;
+}
+
+.profile-img {
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    margin-right: 10px;
+}
+
+.main-content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dash-container {
+    display: flex;
+    margin-top: 20px;
+}
+
+.side-bar, .prompt-section {
+    background: #ffffff;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.side-bar {
+    width: 250px;
+    flex-shrink: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.prompt-section {
+    flex-grow: 1;
+}
+
+.prompt-footers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.prompts, .prompts-list, .prompt-comments {
+    margin-top: 20px;
+}
+
+.prompt-item, .prompt-container {
+    border: 1px solid #dddddd;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+textarea, input[type="text"] {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+textarea[readonly] {
+    background: #f9f9f9;
+}
+
+button {
+    padding: 10px;
+    background: #4b0082;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #3a0069;
+}
+
+button.delete-button, button.cancel-button {
+    background-color: #808080;
+}
+
+button.delete-button:hover, button.cancel-button:hover {
+    background-color: #525252;
+}
+
+.vote-btn {
+    margin-right: 10px;
+}
+
+.vote-btn.upvote, .vote-btn.downvote {
+    font-weight: bold;
+}
+
+.creator-badge {
+    background: #4b0082;
+    color: white;
+    border-radius: 3px;
+    padding: 3px;
+    font-size: 12px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #dddddd;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.flash-messages {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.flash-messages .error {
+    background: #ffdddd;
+    color: #ff0000;
+    padding: 10px;
+    border: 1px solid #dd6666;
+    border-radius: 5px;
+}
+
+.flash-messages .success {
+    background: #ddffdd;
+    color: #00aa00;
+    padding: 10px;
+    border: 1px solid #66dd66;
+    border-radius: 5px;
+}

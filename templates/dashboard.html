@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dash-container">
+    <div class="side-bar">
+        <h3>Your Prompts</h3>
+        {% for prompt in prompts %}
+            <nav>
+                <ul>
+                    <li><a href="#prompt{{ prompt[0] }}">{{ prompt[2] }}</a></li>
+                </ul>
+            </nav>
+        {% endfor %}
+    </div>
+    <div class="prompt-section">
+        <button data-toggle="modal" data-target="#addPromptModal">Add new prompt</button>
+        <div class="prompts">
+            {% for prompt in prompts %}
+                <section id="prompt{{ prompt[0] }}">
+                    <h2>{{ prompt[2] }} <button data-toggle="modal" data-target="#editPromptModal{{ prompt[0] }}">Edit</button></h2>
+                    <textarea readonly>{{ prompt[3] }}</textarea>
+                    <button class="delete-button" data-toggle="modal" data-target="#deletePromptModal{{ prompt[0] }}">Delete</button>
+                </section>
+                {% include 'prompt_edit_delete_modal.html' %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Add Prompt Modal -->
+    <div class="modal" id="addPromptModal">
+        <div class="modal-content">
+            <span class="close" data-dismiss="modal">&times;</span>
+            <form action="{{ url_for('add_prompt') }}" method="POST">
+                <h2>Add New Prompt</h2>
+                <div>
+                    <label>Title:</label>
+                    <input type="text" name="title" required />
+                </div>
+                <div>
+                    <label>Content:</label>
+                    <textarea name="content" maxlength="1000" required></textarea>
+                </div>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
