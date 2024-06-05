@@ -359,3 +359,23 @@ select {
     border: 1px solid #66dd66;
     border-radius: 5px;
 }
+
+.profile-base {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+}
+
+.profile-base img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-names {
+    margin-top: 20px;
+    flex-direction: column;
+}
