@@ -237,12 +237,13 @@ h1, h2, h3 {
 }
 
 textarea, input[type="text"] {
-    width: 100%;
+    width: 95%;
     margin-top: 10px;
     padding: 8px;
     border: 1px solid #dddddd;
     border-radius: 5px;
-    resize: vertical;
+    resize: none;
+    outline: none;
 }
 
 textarea[readonly] {
