@@ -13,14 +13,14 @@
     </div>
     <div class="prompt-comments">
         <h3>Comments</h3>
-        <button data-toggle="modal" data-target="#addCommentModal">Add Comment</button>
+        <button data-toggle="modal" id="newcommentbtn" data-target="#addCommentModal">Add Comment</button>
         {% for comment in comments %}
             <div class="comment">
                 <span style="color: purple;">{{ comment_usernames[comment[2]] }}{% if comment[2] == creator[0] %} <span class="creator-badge">Creator</span>{% endif %}</span>
                 <p>{{ comment[3] }}</p>
                 {% if comment[2] == current_user.id %}
-                    <button data-toggle="modal" data-target="#editCommentModal{{ comment[0] }}">Edit</button>
-                    <button data-toggle="modal" data-target="#deleteCommentModal{{ comment[0] }}">Delete</button>
+                    <button data-toggle="modal" data-target="#editCommentModal{{ comment[0] }}" class="delete-button">Edit</button>
+                    <button data-toggle="modal" data-target="#deleteCommentModal{{ comment[0] }}" class="delete-button">Delete</button>
                 {% endif %}
             </div>
             {% include 'comment_edit_delete_modal.html' %}
