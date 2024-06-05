@@ -273,6 +273,12 @@ button.delete-button:hover, button.cancel-button:hover {
     background-color: #525252;
 }
 
+select {
+    padding: 8px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+
 .vote-btn {
     margin-right: 10px;
 }
