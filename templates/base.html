@@ -17,7 +17,8 @@
                 <li><a href="{{ url_for('explore') }}">Explore</a></li>
                 <li>
                     <div class="user-info">
-                        <span>{{ current_user.username }}</span>
+                        <!-- To profile with the current user ID -->
+                        <span><a href="{{ url_for('profile', user_id=current_user.id) }}">{{ current_user.username }}</a></span>
                         <img src="{{ current_user.avatar_url }}" alt="User Avatar">
                         <a href="{{ url_for('logout') }}">Logout</a>
                     </div>
