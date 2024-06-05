@@ -30,8 +30,9 @@ def load_user(user_id):
     row = cursor.fetchone()
     conn.close()
     if row:
-        return User(row[0], row[1], row[2], row[3])
+        return User(row[0], row[1], row[2], row[3], row[4], row[5])
     return None
+
 
 
 # Helpers
@@ -296,8 +297,6 @@ def profile():
     
     # Get user data
     user_data = query_database('SELECT * FROM users WHERE id = ?', (user_id,), one=True)
-
-    print(user_data)
 
     # Get user's prompts
     prompts = query_database('SELECT * FROM prompts WHERE user_id = ?', (user_id,))

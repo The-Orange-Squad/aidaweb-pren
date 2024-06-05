@@ -10,7 +10,7 @@
         <form action="{{ url_for('edit_profile') }}" method="POST" enctype="multipart/form-data">
             <div>
                 <p>Your Bio:</p>
-                <textarea name="bio" maxlength="500">{{ user[4] }}</textarea>
+                <textarea name="bio" maxlength="500">{{ user.bio }}</textarea>
             </div>
             <div>
                 <p>Avatar URL</p>
