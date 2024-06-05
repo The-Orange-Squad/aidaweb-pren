@@ -13,11 +13,13 @@ login_manager.login_view = 'login'
 
 
 class User(UserMixin):
-    def __init__(self, id, username, discord_username, password):
+    def __init__(self, id, username, discord_username, password, bio, avatar_url):
         self.id = id
         self.username = username
         self.discord_username = discord_username
         self.password = password
+        self.bio = bio
+        self.avatar_url = avatar_url
 
 
 @login_manager.user_loader

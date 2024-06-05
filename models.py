@@ -10,7 +10,9 @@ def create_database():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE NOT NULL,
         discord_username TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL
+        password TEXT NOT NULL,
+        bio TEXT NOT NULL DEFAULT '',
+        avatar_url TEXT NOT NULL DEFAULT 'https://innostudio.de/fileuploader/images/default-avatar.png'
     )
     ''')
 
