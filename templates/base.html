@@ -22,6 +22,8 @@
                         <a href="{{ url_for('logout') }}">Logout</a>
                     </div>
                 </li>
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
+                <li><a href="{{ url_for('join') }}">Join</a></li>
                 {% else %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
                 <li><a href="{{ url_for('register') }}">Register</a></li>

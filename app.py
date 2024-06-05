@@ -316,7 +316,7 @@ def edit_profile():
 @app.route('/settings')
 @login_required
 def settings():
-    return render_template('settings.html')
+    return render_template('settings.html', user=current_user)
 
 
 if __name__ == '__main__':
