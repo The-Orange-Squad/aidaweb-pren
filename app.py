@@ -303,6 +303,21 @@ def profile():
     # Display user profile
     return render_template('profile.html', user=user_data, prompts=prompts)
 
+@app.route('/edit_profile', methods=['POST'])
+@login_required
+def edit_profile():
+    bio = request.form.get('bio')
+    avatar_url = request.form.get('avatar_url')
+
+    execute_database('UPDATE users SET bio = ?, avatar_url = ? WHERE id = ?', (bio, avatar_url, current_user.id))
+
+    return redirect(url_for('profile'))
+
+@app.route('/settings')
+@login_required
+def settings():
+    return render_template('settings.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
