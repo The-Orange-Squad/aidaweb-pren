@@ -16,8 +16,9 @@
         <div class="prompts">
             {% for prompt in prompts %}
                 <section id="prompt{{ prompt[0] }}">
-                    <h2>{{ prompt[2] }} <button data-toggle="modal" data-target="#editPromptModal{{ prompt[0] }}">Edit</button></h2>
+                    <h2>{{ prompt[2] }}</h2>
                     <textarea readonly>{{ prompt[3] }}</textarea>
+                    <button data-toggle="modal" data-target="#editPromptModal{{ prompt[0] }}">Edit</button>
                     <button class="delete-button" data-toggle="modal" data-target="#deletePromptModal{{ prompt[0] }}">Delete</button>
                 </section>
                 {% include 'prompt_edit_delete_modal.html' %}
