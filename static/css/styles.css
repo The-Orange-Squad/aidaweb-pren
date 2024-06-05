@@ -456,6 +456,7 @@ select {
 .additional-section ul {
     list-style: none;
     padding: 0;
+    margin-left: 15%;
 }
 
 .additional-section ul li {
@@ -496,6 +497,13 @@ select {
     margin-top: 100px;
     text-align: center;
 }
+
+.call-to-action p {
+    color: #666666;
+    margin: 20px;
+    text-align: left;
+}
+
 
 .cta-button {
     display: inline-block;
