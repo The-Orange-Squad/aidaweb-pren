@@ -5,11 +5,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from prodpublish import publish
 import threading
 from models import create_database
+import os
 
 create_database()
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'
+app.secret_key = os.environ['SUPERSECRET']
 
 # Flask Login Configuration
 login_manager = LoginManager()
