@@ -5,6 +5,7 @@
         <h1>{{ prompt[2] }}</h1>
         <p id="author">Creator: <b>{{ creator[1] }} ({{ creator[2] }})</b></p>
         <textarea readonly>{{ prompt[3] }}</textarea>
+        <button class="copy-button" data-clipboard-text="{{ prompt[3] }}">Copy</button>
     </div>
     <div class="prompt-votes">
         <button class="vote-btn upvote" data-prompt-id="{{ prompt[0] }}" data-vote-type="1">👍 Upvote</button>

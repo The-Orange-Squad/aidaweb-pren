@@ -236,7 +236,7 @@ def vote():
 
     execute_database('UPDATE prompts SET upvotes = ?, downvotes = ? WHERE id = ?', (upvotes, downvotes, prompt_id))
 
-    return jsonify({'upvotes': upvotes, 'downvotes': downvotes})
+    return jsonify({'upvotes': upvotes, 'downvotes': downvotes, 'total': upvotes - downvotes})
 
 
 @app.route('/add_comment', methods=['POST'])

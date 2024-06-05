@@ -44,17 +44,18 @@ document.addEventListener("DOMContentLoaded", function () {
             })
                 .then(response => response.json())
                 .then(data => {
-                    parent.querySelector('#voteRatio').textContent = `Upvotes: ${data.upvotes} | Downvotes: ${data.downvotes}`;
+                    parent.querySelector('#voteRatio').textContent = `Upvotes: ${data.upvotes} | Downvotes: ${data.downvotes} | Total: ${data.total}`;
                 });
         });
     });
 
     // Sort Prompts
-    document.querySelector('#updateSorting').addEventListener('click', function () {
-        var sortOption = document.querySelector('#sortOption').value;
-        window.location.href = `/explore?sort_by=${sortOption}`;
-    });
-
+    if (document.querySelector('#updateSorting')) {
+        document.querySelector('#updateSorting').addEventListener('click', function () {
+            var sortOption = document.querySelector('#sortOption').value;
+            window.location.href = `/explore?sort_by=${sortOption}`;
+        });
+    }
     // Load More Prompts
     var loadMoreButton = document.querySelector('#loadMorePrompts');
     if (loadMoreButton) {
@@ -87,4 +88,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         });
     }
+
+    var copyButton = document.getElementsByClassName('copy-button')[0];
+    // get data-clipboard-text and copy it to clipboard
+    copyButton.addEventListener('click', function () {
+        // get the data-clipboard-text
+        var text = copyButton.getAttribute('data-clipboard-text');
+        navigator.clipboard.writeText(text).then(function () {
+            console.log('Async: Copying to clipboard was successful!');
+        }, function (err) {
+            console.error('Async: Could not copy text: ', err);
+            // fallback to execCommand
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+        });
+    });
 });
