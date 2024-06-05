@@ -274,6 +274,10 @@ def delete_comment(comment_id):
 
     return redirect(url_for('prompt_page', prompt_id=comment[1]))
 
+@app.route('/join')
+def join():
+    return render_template('jointos.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
