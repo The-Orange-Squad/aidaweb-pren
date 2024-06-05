@@ -12,7 +12,8 @@ def create_database():
         discord_username TEXT UNIQUE NOT NULL,
         password TEXT NOT NULL,
         bio TEXT NOT NULL DEFAULT '',
-        avatar_url TEXT NOT NULL DEFAULT 'https://innostudio.de/fileuploader/images/default-avatar.png'
+        avatar_url TEXT NOT NULL DEFAULT 'https://innostudio.de/fileuploader/images/default-avatar.png',
+        banned BOOLEAN DEFAULT 0
     )
     ''')
 

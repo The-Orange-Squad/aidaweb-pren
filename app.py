@@ -13,13 +13,14 @@ login_manager.login_view = 'login'
 
 
 class User(UserMixin):
-    def __init__(self, id, username, discord_username, password, bio = '', avatar_url = 'https://innostudio.de/fileuploader/images/default-avatar.png'):
+    def __init__(self, id, username, discord_username, password, bio = '', avatar_url = 'https://innostudio.de/fileuploader/images/default-avatar.png', banned = False):
         self.id = id
         self.username = username
         self.discord_username = discord_username
         self.password = password
         self.bio = bio
         self.avatar_url = avatar_url
+        self.banned = banned
 
 
 @login_manager.user_loader
@@ -30,7 +31,7 @@ def load_user(user_id):
     row = cursor.fetchone()
     conn.close()
     if row:
-        return User(row[0], row[1], row[2], row[3], row[4], row[5])
+        return User(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
     return None
 
 
@@ -91,6 +92,9 @@ def login():
         user_data = query_database('SELECT * FROM users WHERE username = ?', (username,), one=True)
         if user_data and check_password_hash(user_data[3], password):
             user = User(user_data[0], user_data[1], user_data[2], user_data[3])
+            if user_data[6]:
+                flash('You are banned from the platform')
+                return redirect(url_for('login'))
             login_user(user)
             return redirect(url_for('dashboard'))
         else:
@@ -109,6 +113,9 @@ def logout():
 @app.route('/dashboard')
 @login_required
 def dashboard():
+    if current_user.banned:
+        flash('You are banned from the platform')
+        return redirect(url_for('logout'))
     prompts = query_database('SELECT * FROM prompts WHERE user_id = ?', (current_user.id,))
     return render_template('dashboard.html', prompts=prompts)
 
@@ -175,6 +182,9 @@ def prompt_page(prompt_id):
 @app.route('/add_prompt', methods=['POST'])
 @login_required
 def add_prompt():
+    if current_user.banned:
+        flash('You are banned from the platform')
+        return redirect(url_for('logout'))
     title = request.form.get('title')
     content = request.form.get('content')
 
@@ -189,6 +199,9 @@ def add_prompt():
 @app.route('/delete_prompt/<int:prompt_id>')
 @login_required
 def delete_prompt(prompt_id):
+    if current_user.banned:
+        flash('You are banned from the platform')
+        return redirect(url_for('logout'))
     prompt = query_database('SELECT * FROM prompts WHERE id = ? AND user_id = ?', (prompt_id, current_user.id), one=True)
     
     if prompt:
@@ -201,6 +214,9 @@ def delete_prompt(prompt_id):
 @app.route('/edit_prompt', methods=['POST'])
 @login_required
 def edit_prompt():
+    if current_user.banned:
+        flash('You are banned from the platform')
+        return redirect(url_for('logout'))
     prompt_id = int(request.form.get('prompt_id'))
     title = request.form.get('title')
     content = request.form.get('content')
@@ -218,6 +234,9 @@ def edit_prompt():
 @app.route('/vote', methods=['POST'])
 @login_required
 def vote():
+    if current_user.banned:
+        flash('You are banned from the platform')
+        return redirect(url_for('logout'))
     prompt_id = int(request.form['prompt_id'])
     vote_type = int(request.form['vote_type'])
 
@@ -242,6 +261,9 @@ def vote():
 @app.route('/add_comment', methods=['POST'])
 @login_required
 def add_comment():
+    if current_user.banned:
+        flash('You are banned from the platform')
+        return redirect(url_for('logout'))
     prompt_id = request.form.get('prompt_id')
     message = request.form.get('message')
 
@@ -256,6 +278,8 @@ def add_comment():
 @app.route('/edit_comment', methods=['POST'])
 @login_required
 def edit_comment():
+    if current_user.banned:
+        flash('You are banned from the platform')
     comment_id = int(request.form.get('comment_id'))
     message = request.form.get('message')
 
@@ -270,6 +294,8 @@ def edit_comment():
 @app.route('/delete_comment/<int:comment_id>')
 @login_required
 def delete_comment(comment_id):
+    if current_user.banned:
+        flash('You are banned from the platform')
     comment = query_database('SELECT * FROM comments WHERE id = ? AND user_id = ?', (comment_id, current_user.id), one=True)
 
     if comment:
@@ -288,6 +314,9 @@ def about():
 @app.route('/profile')
 @login_required
 def profile():
+    if current_user.banned:
+        flash('You are banned from the platform')
+        return redirect(url_for('logout'))
     # Get user_id from URL
     user_id = request.args.get('user_id')
 
@@ -307,6 +336,9 @@ def profile():
 @app.route('/edit_profile', methods=['POST'])
 @login_required
 def edit_profile():
+    if current_user.banned:
+        flash('You are banned from the platform')
+        return redirect(url_for('logout'))
     bio = request.form.get('bio')
     avatar_url = request.form.get('avatar_url')
 
@@ -317,6 +349,9 @@ def edit_profile():
 @app.route('/settings')
 @login_required
 def settings():
+    if current_user.banned:
+        flash('You are banned from the platform')
+        return redirect(url_for('logout'))
     print(current_user.__dict__)
     return render_template('settings.html', user=current_user)
 
