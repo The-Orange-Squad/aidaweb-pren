@@ -3,13 +3,13 @@
 <div class="prompt-container">
     <div class="prompt-header">
         <h1>{{ prompt[2] }}</h1>
-        <p>{{ prompt[3] }}</p>
+        <p id="author">Creator: <b>{{ creator[1] }} ({{ creator[2] }})</b></p>
+        <textarea readonly>{{ prompt[3] }}</textarea>
     </div>
     <div class="prompt-votes">
         <button class="vote-btn upvote" data-prompt-id="{{ prompt[0] }}" data-vote-type="1">👍 Upvote</button>
         <button class="vote-btn downvote" data-prompt-id="{{ prompt[0] }}" data-vote-type="-1">👎 Downvote</button>
-        <span id="voteRatio">Upvotes: {{ prompt[4] }} | Downvotes: {{ prompt[5] }}</span>
-        <p id="author">Creator: <b>{{ creator[1] }} ({{ creator[2] }})</b></p>
+        <span id="voteRatio">Upvotes: {{ prompt[4] }} | Downvotes: {{ prompt[5] }} | Total: {{ prompt[4] - prompt[5] }}</span>
     </div>
     <div class="prompt-comments">
         <h3>Comments</h3>
