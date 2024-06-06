@@ -75,6 +75,21 @@ def register():
         discord_username = request.form.get('discord_username')
         password = request.form.get('password')
 
+        if len(username) > 100:
+            flash("Username too long.")
+            return redirect(url_for('register'))
+        if len(password) > 600:
+            flash("Password too long.")
+            return redirect(url_for('register'))
+        # check if username contains illegal characters
+        if not username.isalnum():
+            flash("Username contains illegal characters.")
+            return redirect(url_for('register'))
+        # check if discord username contains illegal characters (can contain alnum and _)
+        if not discord_username.replace('_', '').isalnum():
+            flash("Discord username contains illegal characters.")
+            return redirect(url_for('register'))
+
         hashed_password = generate_password_hash(password)
 
         try:
@@ -199,6 +214,10 @@ def add_prompt():
     if len(content) > 1000:
         flash("Content is too long")
         return redirect(url_for('dashboard'))
+    
+    if len(title) > 100:
+        flash("Title is too long")
+        return redirect(url_for('dashboard'))
 
     execute_database('INSERT INTO prompts (user_id, title, content) VALUES (?, ?, ?)', (current_user.id, title, content))
     return redirect(url_for('dashboard'))
@@ -230,6 +249,14 @@ def edit_prompt():
     content = request.form.get('content')
 
     prompt = query_database('SELECT * FROM prompts WHERE id = ? AND user_id = ?', (prompt_id, current_user.id), one=True)
+
+    if len(content) > 1000:
+        flash("Content is too long")
+        return redirect(url_for('dashboard'))
+    
+    if len(title) > 100:
+        flash("Title is too long")
+        return redirect(url_for('dashboard'))
 
     if prompt:
         execute_database('''
@@ -293,6 +320,10 @@ def edit_comment():
 
     comment = query_database('SELECT * FROM comments WHERE id = ? AND user_id = ?', (comment_id, current_user.id), one=True)
 
+    if len(message) > 500:
+        flash("Comment too long.")
+        return redirect(url_for('prompt_page', prompt_id=comment[1]))
+
     if comment:
         execute_database('UPDATE comments SET message = ? WHERE id = ? AND user_id = ?', (message, comment_id, current_user.id))
 
@@ -349,6 +380,9 @@ def edit_profile():
         return redirect(url_for('logout'))
     bio = request.form.get('bio')
     avatar_url = request.form.get('avatar_url')
+    if len(bio) > 1000:
+        flash("Bio too long.")
+        return redirect(url_for('settings'))
 
     execute_database('UPDATE users SET bio = ?, avatar_url = ? WHERE id = ?', (bio, avatar_url, current_user.id))
 
@@ -366,6 +400,11 @@ def settings():
 @app.route('/search')
 def search():
     query = request.args.get('query')
+    if not query:
+        return redirect(url_for('explore'))
+    if len(query) > 100:
+        flash("Query too long.")
+        return redirect(url_for('explore'))
     # search by title
     prompts = query_database('SELECT * FROM prompts WHERE title LIKE ? ORDER BY upvotes DESC', ('%' + query + '%',))
     return render_template('search.html', prompts=prompts, query=query)
@@ -374,6 +413,9 @@ def search():
 def search_load_more():
     query = request.form['query']
     offset = int(request.form['offset'])
+    if len(query) > 100:
+        flash("Query too long.")
+        return redirect(url_for('explore'))
     prompts = query_database('SELECT * FROM prompts WHERE title LIKE ? ORDER BY upvotes DESC LIMIT 40 OFFSET ?', ('%' + query + '%', offset))
     return jsonify(prompts)
 
