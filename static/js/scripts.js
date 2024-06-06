@@ -167,4 +167,17 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    var sideBar = document.querySelector('.side-bar');
+    if (sideBar) {
+        var all_a = sideBar.querySelectorAll('a');
+        all_a.forEach(function (a) {
+            // find their parents
+            var parent = a.parentElement;
+            // add click event to parent to click the child
+            parent.addEventListener('click', function () {
+                a.click();
+            });
+        });
+    }
 });
