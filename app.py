@@ -367,14 +367,14 @@ def settings():
 def search():
     query = request.args.get('query')
     # search by title
-    prompts = query_database('SELECT * FROM prompts WHERE title LIKE ?', ('%' + query + '%',))
+    prompts = query_database('SELECT * FROM prompts WHERE title LIKE ? ORDER BY upvotes DESC', ('%' + query + '%',))
     return render_template('search.html', prompts=prompts, query=query)
 
 @app.route('/search_load_more', methods=['POST'])
 def search_load_more():
     query = request.form['query']
     offset = int(request.form['offset'])
-    prompts = query_database('SELECT * FROM prompts WHERE title LIKE ? LIMIT 40 OFFSET ?', ('%' + query + '%', offset))
+    prompts = query_database('SELECT * FROM prompts WHERE title LIKE ? ORDER BY upvotes DESC LIMIT 40 OFFSET ?', ('%' + query + '%', offset))
     return jsonify(prompts)
 
 
