@@ -169,8 +169,6 @@ class SpecificDataWindow(tk.Toplevel):
         super().__init__(parent)
         self.title("Specific Data")
         self.geometry("800x600")
-        # maximize window
-        self.state('zoomed')
 
         self.user_id = user_id
 
