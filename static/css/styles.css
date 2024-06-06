@@ -453,3 +453,43 @@ select {
 .cta-button:hover {
     background: #3a0069;
 }
+
+@media screen and (max-width: 768px) {
+    .container {
+        margin-top: 20px;
+    }
+
+    .more-info {
+        margin-top: 50px;
+    }
+
+    .dash-container {
+        flex-direction: column;
+    }
+
+    .side-bar {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .profile-names {
+        margin-top: 10px;
+    }
+
+    .additional-section ul {
+        margin-left: 0;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+}
