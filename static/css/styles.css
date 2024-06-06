@@ -498,3 +498,42 @@ select {
     width: 200px;
     margin-bottom: 20px;
 }
+
+.side-bar ul {
+    list-style: none;
+    padding: 0;
+    overflow-y: auto;
+}
+
+/* cool styling for li */
+.side-bar ul li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #ededed;
+    border-radius: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.side-bar ul li:hover {
+    background: #dcdcdc;
+}
+
+.side-bar ul li a {
+    text-decoration: none;
+    color: #4b0082;
+}
+
+.prompt-section .prompts {
+    overflow: auto;
+    max-height: 70vh;
+}
+
+.prompt-section {
+    max-height: 80vh;
+}
+
+.side-bar {
+    max-height: 80vh !important;
+    height: 80vh !important;
+}
