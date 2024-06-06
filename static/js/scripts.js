@@ -4,22 +4,31 @@ document.addEventListener("DOMContentLoaded", function () {
     var closeButtons = document.querySelectorAll('.close');
 
     closeButtons.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            this.closest('.modal').style.display = 'none';
-        });
+        if (btn) {
+            btn.addEventListener('click', function () {
+                this.closest('.modal').style.display = 'none';
+            });
+        }
     });
 
     document.querySelectorAll('[data-toggle="modal"]').forEach(function (trigger) {
-        trigger.addEventListener('click', function () {
-            var targetId = this.getAttribute('data-target');
-            document.querySelector(targetId).style.display = 'block';
-        });
+        if (trigger) {
+            trigger.addEventListener('click', function () {
+                var targetId = this.getAttribute('data-target');
+                var targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.style.display = 'block';
+                }
+            });
+        }
     });
 
     document.querySelectorAll('[data-dismiss="modal"]').forEach(function (dismiss) {
-        dismiss.addEventListener('click', function () {
-            this.closest('.modal').style.display = 'none';
-        });
+        if (dismiss) {
+            dismiss.addEventListener('click', function () {
+                this.closest('.modal').style.display = 'none';
+            });
+        }
     });
 
     window.addEventListener('click', function (event) {
@@ -32,30 +41,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Voting
     document.querySelectorAll('.vote-btn').forEach(function (button) {
-        button.addEventListener('click', function () {
-            var promptId = this.getAttribute('data-prompt-id');
-            var voteType = this.getAttribute('data-vote-type');
-            var parent = this.closest('.prompt-container') || this.closest('.prompt-item') || document;
+        if (button) {
+            button.addEventListener('click', function () {
+                var promptId = this.getAttribute('data-prompt-id');
+                var voteType = this.getAttribute('data-vote-type');
+                var parent = this.closest('.prompt-container') || this.closest('.prompt-item') || document;
 
-            fetch('/vote', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `prompt_id=${promptId}&vote_type=${voteType}`
-            })
-                .then(response => response.json())
-                .then(data => {
-                    parent.querySelector('#voteRatio').textContent = `Upvotes: ${data.upvotes} | Downvotes: ${data.downvotes} | Total: ${data.total}`;
-                });
-        });
+                fetch('/vote', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `prompt_id=${promptId}&vote_type=${voteType}`
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        var voteRatioElement = parent.querySelector('#voteRatio');
+                        if (voteRatioElement) {
+                            voteRatioElement.textContent = `Upvotes: ${data.upvotes} | Downvotes: ${data.downvotes} | Total: ${data.total}`;
+                        }
+                    });
+            });
+        }
     });
 
     // Sort Prompts
-    if (document.querySelector('#updateSorting')) {
-        document.querySelector('#updateSorting').addEventListener('click', function () {
+    var updateSortingButton = document.querySelector('#updateSorting');
+    if (updateSortingButton) {
+        updateSortingButton.addEventListener('click', function () {
             var sortOption = document.querySelector('#sortOption').value;
             window.location.href = `/explore?sort_by=${sortOption}`;
         });
     }
+
     // Load More Prompts
     var loadMoreButton = document.querySelector('#loadMorePrompts');
     if (loadMoreButton) {
@@ -89,22 +105,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    var copyButton = document.getElementsByClassName('copy-button')[0];
-    // get data-clipboard-text and copy it to clipboard
-    copyButton.addEventListener('click', function () {
-        // get the data-clipboard-text
-        var text = copyButton.getAttribute('data-clipboard-text');
-        navigator.clipboard.writeText(text).then(function () {
-            console.log('Async: Copying to clipboard was successful!');
-        }, function (err) {
-            console.error('Async: Could not copy text: ', err);
-            // fallback to execCommand
-            var textArea = document.createElement("textarea");
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
+    var copyButton = document.querySelector('.copy-button');
+    if (copyButton) {
+        copyButton.addEventListener('click', function () {
+            var text = copyButton.getAttribute('data-clipboard-text');
+            if (text) {
+                navigator.clipboard.writeText(text).then(function () {
+                    console.log('Async: Copying to clipboard was successful!');
+                }, function (err) {
+                    console.error('Async: Could not copy text: ', err);
+                    // fallback to execCommand
+                    var textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                });
+            }
         });
-    });
+    }
 });
