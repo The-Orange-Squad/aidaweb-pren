@@ -3,6 +3,8 @@
 <div class="explore-container">
     <div class="explore-header">
         <h1>Explore Prompts</h1>
+        <input type="text" id="searchPrompt" placeholder="Search prompts..." value="{{ search_query }}">
+        <button id="searchPrompts">Search</button>
         <select id="sortOption">
             <option value="latest" {% if sort_by == "latest" %}selected{% endif %}>Latest</option>
             <option value="most_liked" {% if sort_by == "most_liked" %}selected{% endif %}>Most Liked</option>

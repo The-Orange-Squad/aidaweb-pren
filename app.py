@@ -363,6 +363,20 @@ def settings():
     print(current_user.__dict__)
     return render_template('settings.html', user=current_user)
 
+@app.route('/search')
+def search():
+    query = request.args.get('query')
+    # search by title
+    prompts = query_database('SELECT * FROM prompts WHERE title LIKE ?', ('%' + query + '%',))
+    return render_template('search.html', prompts=prompts, query=query)
+
+@app.route('/search_load_more', methods=['POST'])
+def search_load_more():
+    query = request.form['query']
+    offset = int(request.form['offset'])
+    prompts = query_database('SELECT * FROM prompts WHERE title LIKE ? LIMIT 40 OFFSET ?', ('%' + query + '%', offset))
+    return jsonify(prompts)
+
 
 if __name__ == '__main__':
     threading.Thread(target=publish).start()

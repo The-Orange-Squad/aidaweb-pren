@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="search-container">
+    <div class="search-header">
+        <h1>Search Results for "{{ query }}"</h1>
+        <input type="text" id="searchPrompt" placeholder="Search prompts..." value="{{ query }}">
+        <button id="searchPrompts">Search</button>
+    </div>
+    <div class="prompts-list" id="promptsContainer">
+        {% for prompt in prompts %}
+            <section class="prompt-item">
+                <h2><a href="{{ url_for('prompt_page', prompt_id=prompt[0]) }}">{{ prompt[2] }}</a></h2>
+                <textarea readonly>{{ prompt[3] }}</textarea>
+                <div class="prompt-footers">
+                    <span>👍 {{ prompt[4] - prompt[5] }}</span>
+                    <span>👁️ {{ prompt[6] }}</span>
+                </div>
+            </section>
+        {% endfor %}
+    </div>
+    <button id="loadMoreSearchResults" data-query="{{ query }}">Load More</button>
+</div>
+{% endblock %}

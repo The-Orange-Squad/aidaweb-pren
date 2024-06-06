@@ -105,6 +105,48 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Load More Search Results
+    var loadMoreSearchResultsButton = document.querySelector('#loadMoreSearchResults');
+    if (loadMoreSearchResultsButton) {
+        var searchQuery = loadMoreSearchResultsButton.getAttribute('data-query');
+        var promptsContainer = document.querySelector('#promptsContainer');
+        var offset = 40;
+
+        loadMoreSearchResultsButton.addEventListener('click', function () {
+            fetch('/search_load_more', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `query=${searchQuery}&offset=${offset}`
+            })
+                .then(response => response.json())
+                .then(prompts => {
+                    prompts.forEach(prompt => {
+                        promptsContainer.insertAdjacentHTML('beforeend', `
+                            <section class="prompt-item">
+                                <h2><a href="/prompt/${prompt[0]}">${prompt[2]}</a></h2>
+                                <textarea readonly class="previewprompt">${prompt[3]}</textarea>
+                                <div class="prompt-footers">
+                                    <span>👍 ${prompt[4] - prompt[5]}</span>
+                                    <span>👁️ ${prompt[6]}</span>
+                                </div>
+                            </section>
+                        `);
+                    });
+
+                    offset += 40;
+                });
+        });
+    }
+
+    // Search Prompts
+    var searchButton = document.querySelector('#searchPrompts');
+    if (searchButton) {
+        searchButton.addEventListener('click', function () {
+            var searchQuery = document.querySelector('#searchPrompt').value;
+            window.location.href = `/search?query=${searchQuery}`;
+        });
+    }
+
     var copyButton = document.querySelector('.copy-button');
     if (copyButton) {
         copyButton.addEventListener('click', function () {
