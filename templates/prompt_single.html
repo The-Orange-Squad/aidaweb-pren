@@ -3,7 +3,7 @@
 <div class="prompt-container">
     <div class="prompt-header">
         <h1>{{ prompt[2] }}</h1>
-        <p id="author">Creator: <b>{{ creator[1] }} ({{ creator[2] }})</b></p>
+        <p onclick="window.location.href='/profile?user_id={{ creator[0] }}'">Creator: <b>{{ creator[1] }} ({{ creator[2] }})</b></p>
         <textarea readonly>{{ prompt[3] }}</textarea>
         <button class="copy-button delete-button" data-clipboard-text="{{ prompt[3] }}"><i class="far fa-copy"></i> Copy</button>
     </div>
